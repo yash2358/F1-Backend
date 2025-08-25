@@ -16,13 +16,13 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ Ashy.EC2_KEY }}" > ~/.ssh/ec2_key.pem
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/ec2_key.pem
           chmod 600 ~/.ssh/ec2_key.pem
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key.pem ${{ Ashy.EC2_USER }}@${{ Ashy.EC2_HOST }} << 'EOF'
-            cd ${{ Ashy.EC2_PATH }}
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            cd ${{ secrets.EC2_PATH }}
             git pull origin main
             npm install --production
             pm2 restart all
