@@ -26,6 +26,13 @@ jobs:
           echo "${{ secrets.EC2_KEY }}" > ~/.ssh/ec2_key.pem
           chmod 600 ~/.ssh/ec2_key.pem
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+      
+      - name: Print secrets (for debugging only)
+        run: |
+          echo "EC2_HOST: '${{ secrets.EC2_HOST }}'"
+          echo "EC2_USER: '${{ secrets.EC2_USER }}'"
+          echo "EC2_PATH: '${{ secrets.EC2_PATH }}'"
+          echo "EC2_KEY: '${{ secrets.EC2_KEY }}'"
 
       - name: Deploy to EC2
         run: |
