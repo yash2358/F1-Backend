@@ -15,7 +15,7 @@ app.use('/api/auth',router);
 app.use('/api/form',contactRouter);
 app.use('/api/data',serviceRouter)
 app.use('/api/admin',adminRouter)
-app.use(errorMiddleware);  //when next function is used for error then it should go to errorMiddleware
+app.use(errorMiddleware);  //whvven next function is used for error then it should go to errorMiddleware
 
 const PORT=process.env.PORT;
 connectDb().then(()=>{
